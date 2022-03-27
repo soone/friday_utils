@@ -1,4 +1,4 @@
-module github.com/soone/utils
+module github.com/soone/friday_utils
 
 go 1.18
 
