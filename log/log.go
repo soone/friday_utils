@@ -1,6 +1,7 @@
 package log
 
 import (
+	"fmt"
 	"path"
 	"time"
 
@@ -10,12 +11,12 @@ import (
 	easy "github.com/t-tomalak/logrus-easy-formatter"
 )
 
-func New() {
+func New(name string) {
 	rotateOptions := []rotatelogs.Option{
 		rotatelogs.WithRotationTime(time.Hour * 24),
 	}
 
-	w, err := rotatelogs.New(path.Join("logs", "notion-%Y-%m-%d.log"), rotateOptions...)
+	w, err := rotatelogs.New(path.Join("logs", fmt.Sprintf("%s-%%Y-%%m-%%d.log", name)), rotateOptions...)
 	if err != nil {
 		logrus.Errorf("rotatelogs init err: %v", err)
 		panic(err)
